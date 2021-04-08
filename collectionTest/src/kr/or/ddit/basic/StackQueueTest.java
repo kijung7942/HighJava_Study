@@ -1,7 +1,5 @@
 package kr.or.ddit.basic;
-
 import java.util.LinkedList;
-import java.util.Stack;
 
 public class StackQueueTest {
 
@@ -45,6 +43,33 @@ public class StackQueueTest {
 	 System.out.println(list.pop()); // 애드로 넣은거
 	 System.out.println(list);       // [] 
 	 								 // pop으로 애드로 추가한거도 가져올수는 있음. 다만 Stack처럼 쓰려는 의도에 맞지 않는다.
+
+	
+	/*
+	 *  Queue의 명령
+	 *  자료 입력 :offer(입력값)
+	 *  자료 출력 : poll() -> 자료를 꺼내오고 꺼내온 자료는 Queue에서 삭제한다.
+	 *  		peak() -> 삭제없이 꺼내온다.
+	 */
+	
+	LinkedList<String> queue = new LinkedList<>();
+	
+	queue.offer("홍길동");
+	queue.offer("일지매");
+	queue.offer("변학도");
+	queue.offer("강감찬");
+	
+	System.out.println("queue->" + queue);
+	System.out.println("꺼내온 값: " + queue.poll());
+	System.out.println("queue->" + queue);
+	
+	System.out.println("삭제없이 꺼내온 값: " + queue.peek());
+	System.out.println("queue->" + queue);
+	
+	queue.offer("성춘향");	
+	System.out.println("queue->" + queue);
+	System.out.println("꺼내온 값: " + queue.poll());
+	
 	}
 
 }

@@ -45,6 +45,12 @@ public class ArrayListTest03 {
 		
 		
 		
+		
+		
+		
+		String a = (String)(Object)1;
+		
+		
 	}
 
 }
