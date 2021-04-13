@@ -1,12 +1,12 @@
 package kr.or.ddit.basic;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Practice {
 
-
+	public static void main(String[] args) {
+		
+	}
+	
 //			상품테이블은 prod,    회원테이블은 member.  우편번호테이블은 ziptb
 //			sql문의 결과물을 가지고 자바프로그램에서 수행하기 위한 메소드를 만든다
 //			public  리턴결과형  메소드이름(매개변수타입  변수명)

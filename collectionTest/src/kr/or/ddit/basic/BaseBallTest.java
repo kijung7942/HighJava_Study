@@ -25,33 +25,39 @@ public class BaseBallTest {
 		ArrayList<Integer> comNum = new ArrayList<>(random);
 		Collections.shuffle(comNum);
 		System.out.println(comNum);
-		ArrayList<Integer> UserNum = new ArrayList<>(random);
+		ArrayList<Integer> userNum = new ArrayList<>(random);
 		boolean flag = true;
 		while(flag){
-				UserNum.clear();
+				userNum.clear();
 				s = 0; b = 0; o = 0;
-//			for(int i = 0 ; i < 3 ; i++){
-//				System.out.println("1~9 숫자를 하나 입력해주세요>");
-//				UserNum.add(sc.nextInt());}
 				System.out.println("=========================");
 				System.out.println(count+"번째 시도 중...");
 			for(int i = 0 ; i < 3 ; i++){
 				System.out.println("1~9 숫자를 하나 입력해주세요>");
-				UserNum.add(sc.nextInt());}
+				userNum.add(sc.nextInt());}
 				
 				
-			if(comNum.get(0) == UserNum.get(0))
-				s++;
-			if(comNum.get(0) != UserNum.get(0)&&comNum.get(0) == UserNum.get(1)||comNum.get(0) == UserNum.get(2))
-				b++;
-			if(comNum.get(1) == UserNum.get(1))
-				s++;
-			if(comNum.get(1) != UserNum.get(1)&&comNum.get(1) == UserNum.get(0)||comNum.get(1) == UserNum.get(2))
-				b++;
-			if(comNum.get(2) == UserNum.get(2))
-				s++;
-			if(comNum.get(2) != UserNum.get(2)&&comNum.get(2) == UserNum.get(0)||comNum.get(2) == UserNum.get(1))
-				b++;
+			for(int i = 0 ; i < userNum.size(); i++){
+				for(int j = 0 ; j < comNum.size(); j++){
+					if(userNum.get(i) == comNum.get(j)){
+						if (i == j){
+							s++;
+						}else b++;
+					}
+				}
+			}
+//			if(comNum.get(0) == userNum.get(0))
+//				s++;
+//			if(comNum.get(0) != userNum.get(0)&&comNum.get(0) == userNum.get(1)||comNum.get(0) == userNum.get(2))
+//				b++;
+//			if(comNum.get(1) == userNum.get(1))
+//				s++;
+//			if(comNum.get(1) != userNum.get(1)&&comNum.get(1) == userNum.get(0)||comNum.get(1) == userNum.get(2))
+//				b++;
+//			if(comNum.get(2) == userNum.get(2))
+//				s++;
+//			if(comNum.get(2) != userNum.get(2)&&comNum.get(2) == userNum.get(0)||comNum.get(2) == userNum.get(1))
+//				b++;
 			o = 3-s-b;
 			System.out.println("S = " + s + "B = " + b + " O = " + o);
 			if(s==3){System.out.println(count+"번째에 맞췄습니다");

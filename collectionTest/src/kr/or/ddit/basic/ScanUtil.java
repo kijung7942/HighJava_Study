@@ -10,7 +10,7 @@ public class ScanUtil {
 	}
 
 	public static Integer nextInt(){
-		return sc.nextInt();
+		return Integer.parseInt(sc.nextLine());
 	}
 	
 	
