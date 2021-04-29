@@ -9,7 +9,8 @@ public class ArrayListTest01 {
 
 		// ArrayList는 기본적인 사용법이 Vector와 같다.
 		
-		// Vector는 쓰레드에서 기본적으로 동기화처리를 하기 때문에 속도가 느리다. <-> ArrayList는 쓰레드에서 기본적으로 동기화처리가 안되어 있기 때문에 속도가 빠르다.
+		// Vector는 쓰레드에서 기본적으로 동기화처리를 하기 때문에 속도가 느리다. <-> 
+		// ArrayList는 쓰레드에서 기본적으로 동기화처리가 안되어 있기 때문에 속도가 빠르다.
 		
 		
 		ArrayList list = new ArrayList(); 
