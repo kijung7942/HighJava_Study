@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
+
+import kr.or.ddit.util.DBUtil3;
+import kr.or.ddit.util.ScanUtil;
+
+// 오라클 회선이 무한한게 아니기 때문에 사용하고 닫아주는 것을 잊지 말아야 한다. -> 작업마다 열고 닫고 해주는게 좋음.
 
 /* 
  *  회원관리하는 프로그램 작성
@@ -18,6 +22,7 @@ import java.util.Scanner;
  *  	2. 자료 삭제
  *  	3. 자료 수정
  *  	4. 전체 자료 출력
+ *  	5. 자료 수정2
  *  	0. 작업 끝.
  *  
  *  
@@ -29,7 +34,7 @@ import java.util.Scanner;
 public class JDBCTest06 {
 
 	
-	static Connection con = DBUtil.getConnection();
+	static Connection con = DBUtil3.getConnection();
 	static PreparedStatement ps = null;
 	static ResultSet rs = null;
 	
@@ -40,6 +45,7 @@ public class JDBCTest06 {
 		System.out.println("2. 자료 삭제");
 		System.out.println("3. 자료 수정");
 		System.out.println("4. 전체 자료 출력");
+		System.out.println("5. 자료수정2");
 		System.out.println("0. 작업 끝");
 		int input = ScanUtil.nextInt();
 		switch(input) {
@@ -50,10 +56,13 @@ public class JDBCTest06 {
 			delete();
 			break;
 		case 3:
-			modify();
+			modifyAll();
 			break;
 		case 4:
 			printAll();
+			break;
+		case 5:
+			modify();
 			break;
 		case 0:
 			if(rs!=null)try {rs.close();}catch(Exception e) {}
@@ -66,6 +75,55 @@ public class JDBCTest06 {
 		
 		
 		}
+		
+	}
+
+	private static void modifyAll() {
+		System.out.println("== 전체 자료 수정 ==");
+		while(true) {
+			try {
+				System.out.println("수정할 ID를 입력하세요");
+				String memberID = ScanUtil.nextLine();
+				String sql = "SELECT * FROM MYMEMBER";
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {	
+					if(!memberID.equals(rs.getString(1))) {
+						System.out.println("등록된 ID가 없습니다.");
+						return;
+					}else {
+						break;
+					}
+				}
+				
+				System.out.println("수정 할 비밀번호을 입력하세요");
+				String afterPass = ScanUtil.nextLine();
+				System.out.println("수정 할 이름을 입력하세요");
+				String afterName = ScanUtil.nextLine();
+				System.out.println("수정 할 전화번호을 입력하세요");
+				String afterTel = ScanUtil.nextLine();
+				System.out.println("수정 할 주소을 입력하세요");
+				String afterAddr = ScanUtil.nextLine();
+				sql = "UPDATE MYMEMBER SET MEM_PASS = ?, MEM_NAME = ?, MEM_TEL = ?, MEM_ADDR = ? WHERE MEM_ID = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, afterPass);
+				ps.setString(2, afterName);
+				ps.setString(3, afterTel);
+				ps.setString(4, afterAddr);
+				ps.setString(5, memberID);
+				
+				int result = ps.executeUpdate();
+				if(result > 0) {System.out.println("수정 성공");}
+				else {System.out.println("수정 실패");}
+				return;
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+			
+		}
+
+
 		
 	}
 
@@ -134,7 +192,6 @@ public class JDBCTest06 {
 				ps.setString(2, memberID);
 
 				int result = ps.executeUpdate();
-				System.out.println(result);
 				if(result > 0) {System.out.println("수정 성공");}
 				else {System.out.println("수정 실패");}
 				return;

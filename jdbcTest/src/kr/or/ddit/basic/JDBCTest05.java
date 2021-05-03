@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import kr.or.ddit.util.DBUtil;
+
 public class JDBCTest05 {
 
 	/*
