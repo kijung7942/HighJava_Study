@@ -7,14 +7,19 @@ import kr.or.ddit.mvc.dao.MemberDaoImpl;
 import kr.or.ddit.mvc.vo.MemberVO;
 
 public class MemberServiceImpl implements IMemberService{
+	private static MemberServiceImpl instance;
 	private MemberDaoImpl dao; // DAO객체가 저장될 변수 선언
 	
-	
 	//생성자
-	public MemberServiceImpl() {
-		dao = new MemberDaoImpl();					// 굳이 생성자에서 선언하는 이유 -> 오라클 말고 다른 DBMS에서도 사용하기 쉽게 하기 위해서(다른 DAO를 붙일 수 있게)
+	private MemberServiceImpl() {
+		dao = MemberDaoImpl.getInstance();			// 굳이 생성자에서 선언하는 이유 -> 오라클 말고 다른 DBMS에서도 사용하기 쉽게 하기 위해서(다른 DAO를 붙일 수 있게)
 	}
 
+	public static MemberServiceImpl getInstance() {
+		if(instance == null) instance = new MemberServiceImpl();
+		return instance;
+	}
+	
 	@Override
 	public int insertMember(MemberVO memVo) {
 		return dao.insertMember(memVo);

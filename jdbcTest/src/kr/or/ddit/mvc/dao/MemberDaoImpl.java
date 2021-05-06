@@ -13,6 +13,16 @@ import kr.or.ddit.util.DBUtil3;
 
 public class MemberDaoImpl implements IMemberDao {
 
+	private static MemberDaoImpl instance;
+	
+	private MemberDaoImpl() {	}
+	
+	public static MemberDaoImpl getInstance() {
+		if(instance ==null) instance = new MemberDaoImpl();
+		return instance;
+	}
+	
+	
 	@Override
 	public int insertMember(MemberVO memVo) {
 		Connection conn = null;
