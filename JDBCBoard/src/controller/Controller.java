@@ -1,13 +1,13 @@
-package kr.or.ddit.mvc.controller;
+package controller;
 
 import java.util.List;
 import java.util.Scanner;
 
-import kr.or.ddit.mvc.service.BoardService;
-import kr.or.ddit.mvc.vo.BoardVO;
+import service.BoardService;
+import vo.BoardVO;
 
 public class Controller {
-	
+
 	BoardService service = new BoardService();
 	Scanner sc = new Scanner(System.in);
 	
